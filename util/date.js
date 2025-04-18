@@ -1,4 +1,8 @@
 export function getFormattedDate(date) {
+  if (!(date instanceof Date) || isNaN(date.getTime())) {
+    return "Invalid date";
+  }
+
   return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 }
 
