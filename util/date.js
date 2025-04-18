@@ -1,9 +1,11 @@
 export function getFormattedDate(date) {
-  if (!(date instanceof Date) || isNaN(date.getTime())) {
+  const validDate = date instanceof Date ? date : new Date(date);
+
+  if (isNaN(validDate.getTime())) {
     return "Invalid date";
   }
 
-  return date.toISOString().slice(0, 10);
+  return validDate.toISOString().slice(0, 10);
 }
 
 export function getDateMinusDays(date, days) {
