@@ -41,3 +41,21 @@ Create a `.env` file in the root of your project based on `.env.example`:
 ```bash
 cp .env.example .env
 ```
+
+## Screenshots
+
+### Recent expenses (past 7 days) vs. all expenses
+
+<img width="370" alt="image" src="https://github.com/user-attachments/assets/9349531f-36a4-4dce-9220-9a94b534f3c3" />
+
+<img width="376" alt="image" src="https://github.com/user-attachments/assets/69268900-9113-4b82-9488-9186d05a2e15" />
+
+### Adding / Editing an expense
+
+<img width="380" alt="image" src="https://github.com/user-attachments/assets/35c08c96-bf29-4ae7-8dde-7b417d0b9a9d" />
+
+<img width="370" alt="image" src="https://github.com/user-attachments/assets/d6586e55-dcbf-4ae2-95cf-2abaaf105533" />
+
+### Error handling view
+
+<img width="366" alt="image" src="https://github.com/user-attachments/assets/910dff07-1d36-4acf-9acc-2b837e5de613" />
