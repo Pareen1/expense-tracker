@@ -33,8 +33,6 @@ function AuthContextProvider({ children }) {
     login: (email, password) => {},
   };
 
-  console.log("user id:", userId);
-
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 

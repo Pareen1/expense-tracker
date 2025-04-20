@@ -11,11 +11,22 @@ import SignupScreen from "../screens/SignupScreen";
 import RecentExpenses from "../screens/RecentExpenses";
 import AllExpenses from "../screens/AllExpenses";
 import IconButton from "../components/UI/IconButton";
+import { signOut } from "../util/auth";
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
 
 function ExpensesOverview() {
+  const authCtx = useContext(AuthContext);
+
+  async function handleSignOut() {
+    try {
+      await signOut();
+      authCtx.logout();
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  }
   return (
     <BottomTabs.Navigator
       screenOptions={({ navigation }) => ({
@@ -23,6 +34,14 @@ function ExpensesOverview() {
         headerTintColor: GlobalStyles.colors.white,
         tabBarStyle: { backgroundColor: GlobalStyles.colors.primary600 },
         tabBarActiveTintColor: GlobalStyles.colors.accent500,
+        headerLeft: ({ tintColor }) => (
+          <IconButton
+            icon="exit-outline"
+            size={24}
+            color={tintColor}
+            onPress={handleSignOut}
+          />
+        ),
         headerRight: ({ tintColor }) => (
           <IconButton
             icon="add"
