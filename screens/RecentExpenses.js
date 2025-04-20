@@ -14,7 +14,6 @@ function RecentExpenses({ expenses }) {
   const expensesCtx = useContext(ExpensesContext);
   const authCtx = useContext(AuthContext);
   const userId = authCtx?.userId;
-  console.log("userId", userId);
 
   useEffect(() => {
     async function getExpenses() {
