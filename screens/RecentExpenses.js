@@ -14,6 +14,7 @@ function RecentExpenses({ expenses }) {
   const expensesCtx = useContext(ExpensesContext);
   const authCtx = useContext(AuthContext);
   const userId = authCtx?.userId;
+  console.log("userId", userId);
 
   useEffect(() => {
     async function getExpenses() {
@@ -29,7 +30,7 @@ function RecentExpenses({ expenses }) {
     }
 
     getExpenses();
-  }, []);
+  }, [userId]);
 
   if (error && !isFetching) {
     return <ErrorOverlay message={error} />;
@@ -46,6 +47,7 @@ function RecentExpenses({ expenses }) {
 
     return expenseDate >= sevenDaysAgo && expenseDate <= today;
   });
+
   return (
     <ExpensesOutput
       expenses={recentExpenses}

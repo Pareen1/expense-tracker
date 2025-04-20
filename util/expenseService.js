@@ -15,10 +15,13 @@ export async function storeExpense(expenseData, userId) {
 }
 
 export async function fetchExpenses(userId) {
+  console.log("user id is: ", userId);
   const { data, error } = await supabase
     .from("expenses")
     .select("*")
     .eq("user_id", userId);
+
+  console.log("data is: ", data);
 
   if (error) {
     console.error("Fetch error:", error);

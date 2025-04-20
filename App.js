@@ -2,7 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import ExpensesContextProvider from "./store/expenses-context";
 import AuthContextProvider from "./store/auth-context";
-import RootNavigation from "./navigation/RootNavigation"; // new file
+import RootNavigation from "./navigation/RootNavigation";
 
 export default function App() {
   return (
