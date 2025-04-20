@@ -1,9 +1,9 @@
 import { supabase } from "./supabase";
 
-export async function storeExpense(expenseData) {
+export async function storeExpense(expenseData, userId) {
   const { data, error } = await supabase
     .from("expenses")
-    .insert([expenseData])
+    .insert([{ ...expenseData, user_id: userId }])
     .select();
 
   if (error) {
@@ -14,8 +14,11 @@ export async function storeExpense(expenseData) {
   return data;
 }
 
-export async function fetchExpenses() {
-  const { data, error } = await supabase.from("expenses").select("*");
+export async function fetchExpenses(userId) {
+  const { data, error } = await supabase
+    .from("expenses")
+    .select("*")
+    .eq("user_id", userId);
 
   if (error) {
     console.error("Fetch error:", error);
@@ -25,11 +28,12 @@ export async function fetchExpenses() {
   return data;
 }
 
-export async function updateExpense(id, expenseData) {
+export async function updateExpense(id, expenseData, userId) {
   const { data, error } = await supabase
     .from("expenses")
     .update(expenseData)
     .eq("id", id)
+    .eq("user_id", userId)
     .select();
 
   if (error) {
@@ -40,11 +44,12 @@ export async function updateExpense(id, expenseData) {
   return data;
 }
 
-export async function deleteExpense(id) {
+export async function deleteExpense(id, userId) {
   const { data, error } = await supabase
     .from("expenses")
     .delete()
     .eq("id", id)
+    .eq("user_id", userId)
     .select();
 
   if (error) {

@@ -11,12 +11,16 @@ import {
 } from "../util/expenseService";
 import LoadingOverlay from "../components/UI/LoadingOverlay";
 import ErrorOverlay from "../components/UI/ErrorOverlay";
+import { AuthContext } from "../store/auth-context";
 
 function ManageExpenses({ route, navigation }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState();
 
   const expensesCtx = useContext(ExpensesContext);
+  const authCtx = useContext(AuthContext);
+  const userId = authCtx?.userId;
+
   const editedExpenseId = route.params?.expenseId;
   const isEditing = !!editedExpenseId;
 
@@ -33,7 +37,7 @@ function ManageExpenses({ route, navigation }) {
   async function deleteExpenseHandler() {
     setIsSubmitting(true);
     try {
-      await deleteExpense(editedExpenseId);
+      await deleteExpense(editedExpenseId, userId);
       expensesCtx.deleteExpense(editedExpenseId);
       navigation.goBack();
     } catch (error) {
@@ -51,9 +55,9 @@ function ManageExpenses({ route, navigation }) {
     try {
       if (isEditing) {
         expensesCtx.updateExpense(editedExpenseId, expenseData);
-        await updateExpense(editedExpenseId, expenseData);
+        await updateExpense(editedExpenseId, expenseData, userId);
       } else {
-        const data = await storeExpense(expenseData);
+        const data = await storeExpense(expenseData, userId);
         const id = data[0]?.id;
         expensesCtx.addExpense({ ...expenseData, id });
       }
