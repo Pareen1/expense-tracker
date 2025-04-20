@@ -1,5 +1,5 @@
 import { View, StyleSheet, Text, Alert } from "react-native";
-import Input from "./Input";
+import Input from "../UI/Input";
 import { useState } from "react";
 import Button from "../UI/Button";
 import { getFormattedDate } from "../../util/date";
